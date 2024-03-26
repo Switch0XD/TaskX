@@ -1,12 +1,10 @@
 const app = require('../app');
-const debug = require('debug')('taskhackerkernel:server');
+const debug = require('debug')('TaskX:server');
 const http = require('http');
 
-// Define the initial port and increment step
 const initialPort = parseInt(process.env.PORT, 10) || 3001;
 const portIncrementStep = 1;
 
-// Start the server on the first available port
 startServer(initialPort);
 
 function startServer(port) {
@@ -21,20 +19,16 @@ function startServer(port) {
       throw error;
     }
 
-    // If the error is due to the port being already in use,
-    // try the next port by recursively calling startServer
     if (error.code === 'EADDRINUSE') {
       console.error(`Port ${port} is already in use`);
       console.error(`Trying port ${port + portIncrementStep}...`);
       startServer(port + portIncrementStep);
     } else {
-      // Handle other errors
       var bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port;
       switch (error.code) {
         case 'EACCES':
           console.error(bind + ' requires elevated privileges');
           process.exit(1);
-          break;
         default:
           throw error;
       }
@@ -48,7 +42,6 @@ function startServer(port) {
       : 'port ' + addr.port;
     debug('Listening on ' + bind);
 
-    // Print the URL with the port
     console.log('Server running at http://localhost:' + addr.port);
   }
 }

@@ -1,4 +1,4 @@
-const { knex, Model } = require("../../knexfile");
+const { knex } = require("../../config/db");
 
 exports.taskCreateController = (req, res) => {
   knex("task")

@@ -1,5 +1,5 @@
 const excel = require('excel4node');
-const { knex } = require("../../knexfile");
+const { knex } = require("../../config/db");
 
 // Controller for creating a user
 exports.userCreateController = (req, res, next) => {
