@@ -1,51 +1,163 @@
-<!-- views/index.hbs -->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simple Web App</title>
+  <title>TaskX</title>
+
+  <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css'
+    integrity='sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z' crossorigin='anonymous'>
 </head>
 
 <body>
-  <h1>Users</h1>
-  <form action="/add-user" method="post">
-    <input type="text" name="name" placeholder="Name" required>
-    <input type="email" name="email" placeholder="Email" required>
-    <input type="text" name="mobile" placeholder="Mobile" required>
-    <button type="submit">Add User</button>
-  </form>
+  <div id="formHolder" class="container mt-5">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form1">
+          <form action="/createUser" method="post">
+            <h3>Users Form</h3>
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" name="name" placeholder="Name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" name="email" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+              <label for="number">Mobile</label>
+              <input type="tel" class="form-control" name="number" placeholder="Mobile" pattern="[0-9]{10}" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Create User</button>
+          </form>
+          <h4>Users Details:</h4>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone No.</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each user}}
+              <tr>
+                <td>{{name}}</td>
+                <td>{{email}}</td>
+                <td>{{number}}</td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form2">
+          <form action="/createTask" method="post">
+            <h3>Tasks</h3>
+            <div class="form-group">
+              <label for="user">Select User</label>
+              <select class="form-control" name="user">
+                {{#each user}}
+                <option value="{{user_id}}">{{name}}</option>
+                {{/each}}
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="taskName">Task Name</label>
+              <input type="text" class="form-control" name="taskName" placeholder="Task Name" required>
+            </div>
+            <div class="form-group">
+              <label for="TaskType">Task Type</label>
+              <select class="form-control" name="TaskType">
+                <option value="Pending">Pending</option>
+                <option value="Done">Done</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Create Task</button>
+          </form>
+          <h4>Tasks Details:</h4>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Task Name</th>
+                <th>Task Type</th>
 
-  <h1>Tasks</h1>
-  <form action="/add-task" method="post">
-    <select name="user_id">
-      {{#each users}}
-      <option value="{{this.id}}">{{this.name}}</option>
-      {{/each}}
-    </select>
-    <input type="text" name="task_name" placeholder="Task Name" required>
-    <input type="text" name="task_type" placeholder="Task Type" required>
-    <select name="status">
-      <option value="Pending">Pending</option>
-      <option value="Done">Done</option>
-    </select>
-    <button type="submit">Add Task</button>
-  </form>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each task}}
+              <tr>
+                <td>{{taskName}}</td>
+                <td>{{TaskType}}</td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+          <button class="btn btn-success"><a href="/export" class="text-white">Export to Excel</a></button>
+          <a href="/download" class="btn btn-info" download>Download Excel</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <h2>User List</h2>
-  <ul>
-    {{#each users}}
-    <li>{{this.name}} - {{this.email}} - {{this.mobile}}</li>
-    {{/each}}
-  </ul>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
+    integrity="sha384-OfspJ+NaApKj3mB5G8/aG0e3fQWlSwCn7/CsT5sBEAeAl/lc/Oc+oz6+5YqMKg5R"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shC4nsgvP4+76rS/Wz9TpIhqJ2v8Lz3+oiPb6"
+    crossorigin="anonymous"></script>
+  <script>
 
-  <h2>Task List</h2>
-  <ul>
-    {{#each tasks}}
-    <li>{{this.task_name}} - {{this.task_type}} - {{this.status}}</li>
-    {{/each}}
-  </ul>
+
+    let form = document.querySelector(".form1 form");
+    let email = document.querySelector("form input[type = email]");
+    let number = document.querySelector("form input[type = number]");
+    { { !--let phone = parseInt(numberInput.value); --} }
+
+    //validate phone number
+    function validatePhoneNumber(inputtxt, e) {
+      var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+      if (inputtxt.value.match(phoneno)) {
+        return true;
+      }
+      else {
+        e.preventDefault();
+        alert("Mobile number incoorect");
+        return false;
+      }
+    }
+
+
+
+    //validate email id
+    function validateEmailFormat(emailInput, event) {
+      const validRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+      if (emailInput.value.match(validRegex)) {
+        return true;
+      } else {
+        event.preventDefault();
+        alert("Enter valid Email !");
+        emailInput.focus();
+        return false;
+      }
+    }
+
+
+
+    form.addEventListener("submit", function (e) {
+      validateEmailFormat(email, e)
+      validatePhoneNumber(phone, e)
+    })
+
+
+
+  </script>
 </body>
 
 </html>
