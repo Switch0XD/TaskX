@@ -41,9 +41,12 @@ TaskX is a task tracking solution designed to help individuals and teams manage 
 - Admin can export all users and their tasks to an Excel spreadsheet with separate sheets for users and tasks.
 
 ## Screenshots
-- ![User Creation Form](screenshots/user_creation_form.png)
-- ![Task Assignment Form](screenshots/task_assignment_form.png)
-- ![Excel Export Button](screenshots/excel_export_button.png)
+- ![User Creation Form](![image](https://github.com/Switch0XD/TaskX/assets/43660918/574e7479-0051-43e3-8f66-bd2754142527)
+)
+- ![Task Assignment Form](![image](https://github.com/Switch0XD/TaskX/assets/43660918/87b74c3b-810c-4884-a953-8237e409699e)
+)
+- ![Excel Export Button](![image](https://github.com/Switch0XD/TaskX/assets/43660918/7286f221-5cb8-4765-8b3a-4ab3559fc760)
+)
 
 
 
