@@ -37,7 +37,7 @@ TaskX is a task tracking solution designed to help individuals and teams manage 
 ## Features
 - Admin can add users with name, email, and mobile number.
 - Admin can assign tasks to users, specifying the task name, type, and status (pending/done).
-- Validation is implemented for email and mobile number fields using JavaScript and PHP (regular expressions).
+- Validation is implemented for email and mobile number fields using JavaScript (regular expressions).
 - Admin can export all users and their tasks to an Excel spreadsheet with separate sheets for users and tasks.
 
 ## Screenshots
@@ -45,9 +45,8 @@ TaskX is a task tracking solution designed to help individuals and teams manage 
 - ![Task Assignment Form](screenshots/task_assignment_form.png)
 - ![Excel Export Button](screenshots/excel_export_button.png)
 
-## Contact Information
-For inquiries or assistance regarding the project, please contact [Your_Name] at [Your_Email@example.com].
+
 
 ## Acknowledgements
-- This project was completed as part of the HackerKernel Node.js Trainee position application.
+- This project was completed as part of the HackerKernel MERN Trainee position application.
 - Special thanks to HackerKernel for the opportunity to work on this project.
